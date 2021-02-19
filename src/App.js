@@ -1,11 +1,12 @@
 import Nav from './components/navbar';
 import Card from './components/card';
+import Container from'./components/container';
 
 function App() {
   return (
     <div className="App">
       <Nav />
-      <Card />
+      <Container />
     </div>
   );
 }
