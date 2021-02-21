@@ -14,11 +14,13 @@ export default class PersonList extends React.Component {
       this.setState({ results: res.data});
     })
   }
-  col
   render() {
+    console.log(this.state.results, 'this.state')
     return (
     <ul>
-      { this.state.results.map(result => <li>{result.first}</li>)}
+      { this.state.results[0] !== undefined ?
+ (this.state.results.map(result => <li>{result.first}</li>)):(<></>)}
     </ul>);
     }
 }
+
