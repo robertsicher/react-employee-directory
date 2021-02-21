@@ -8,9 +8,9 @@ export default class PersonList extends React.Component {
   };
 
   componentDidMount() {
-    axios.get('https://randomuser.me/api/')
+    axios.get('https://randomuser.me/api/?results=20')
     .then(res => {
-      console.log(res, 'results')
+      console.log(res.data.results[0].name.first, 'results')
       this.setState({ results: res.data});
     })
   }
@@ -18,7 +18,7 @@ export default class PersonList extends React.Component {
   render() {
     return (
     <ul>
-      { this.state.results.map(result => <li>{result.name}</li>)}
+      { this.state.results.map(result => <li>{result.first}</li>)}
     </ul>);
     }
 }

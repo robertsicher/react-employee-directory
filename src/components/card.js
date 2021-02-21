@@ -9,7 +9,7 @@ function Card() {
         <CustomPlaceholder width={200} height={200} />
             <div class="card-body">
             <h5 class="card-title">Name</h5>
-            <p class="card-text mb-1"><PersonList /></p>
+            <p class="card-text mb-1"></p>
             <p class="card-text">Phone Number</p>
             </div>
         </div>    
