@@ -1,13 +1,11 @@
 import Nav from './components/navbar';
-import Card from './components/card';
-import Container from'./components/container';
-import PersonList from './api/api.js'
+import Employees from './components/employees'
 
 function App() {
   return (
     <div className="App">
       <Nav />
-      <Container />
+      <Employees />
       
       
       

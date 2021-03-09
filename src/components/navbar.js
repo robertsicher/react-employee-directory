@@ -3,9 +3,9 @@ import '../styles.css';
 
 function Nav() {
     return (
-        <nav class="navbar navbar-expand navbar-dark bg-dark mb-4" aria-label="Second navbar example ">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Employee Directory</a>
+        <nav className="navbar navbar-expand navbar-dark bg-dark mb-4" aria-label="Second navbar example ">
+    <div className="container-fluid">
+      <a className="navbar-brand" href="#">Employee Directory</a>
     </div>
   </nav>      
     );
