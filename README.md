@@ -33,7 +33,7 @@
   See it in action:
   https://Robertsicher.github.io/react-employee-directory/
   
-  ![An image of it in action ](/public/app.png)
+  ![An image of it in action ](./public/app.png)
   
   
   ## Author
