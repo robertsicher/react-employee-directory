@@ -5,7 +5,7 @@ function Nav() {
     return (
         <nav className="navbar navbar-expand navbar-dark bg-dark mb-4" aria-label="Second navbar example ">
     <div className="container-fluid">
-      <a className="navbar-brand" href="#">Employee Directory</a>
+      <a className="navbar-brand">Employee Directory</a>
     </div>
   </nav>      
     );

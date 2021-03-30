@@ -2,50 +2,67 @@ import React, {Component} from 'react';
 import '../styles.css';
 import axios from 'axios';
 import EmployeeList from './employeelist';
-import Filtergroup from './filtergroup';
 import { Container } from 'react-bootstrap';
+import Searchbar from './searchbar';
 
-class Employees extends Component {
+export default class Employees extends Component {
 
-    constructor(props){
-        super(props);
-        this.state = {
-            employee: [],
-            sort: '',
-        }
-    }
+  constructor(props){
+    super(props);
+      this.state = {
+          employee: [],
+          filteredEmployee:[],
+          sort: 'asc',
+      }
+  }
+
+  handleSort = (category) => {
+  if (this.state.sort === "des") {
+    this.setState({ sort: "asc" });
+  } else {
+    this.setState({ sort: "des" });
+  }
+
+  const compareEmployeesNames = (a, b) => {
+    if (this.state.sort === "asc") {
+       if (category === "name") {
+        return a[category].first.localeCompare(b[category].first);
+      } 
+    } else {
+       if (category === "name") {
+        return b[category].first.localeCompare(a[category].first);
+      }}
+  };
+  const usersSorted = this.state.filteredEmployee.sort(compareEmployeesNames);
+  this.setState({ filteredEmployee: usersSorted });
+};
 
   componentDidMount() {
-    axios.get('https://randomuser.me/api/?results=20')
+    axios.get('https://randomuser.me/api/?results=20&nat=gb')
     .then(res => {
-      this.setState({ employee: res.data.results});
+      this.setState({ 
+          employee: res.data.results,
+          filteredEmployee: res.data.results,
+        });
       console.log(res.data.results)
-    })
+    });
   }
 
-  handleSort = (e) =>{
-      console.log(e.target.value)
-      this.setState({sort: e.target.value})
-  }
-  
+  searchFilter = (e) => {
+    const filter = e.target.value;
+    const filteredEmployeeList = this.state.employee.filter((employees) => {
+      let employeeValues = Object.values(employees).join("").toLowerCase();
+      return employeeValues.indexOf(filter.toLowerCase()) !== -1;
+    });
+    this.setState({ filteredEmployee: filteredEmployeeList });
+  };
 
     render() {
-        const sortedEmployees = this.state.employee.sort((a,b) => {
-            if(this.state.sort === 'Youngest' ) {
-                return parseInt(a.registered.age.subString(0,1)) - parseInt(b.registered.age.subString(0,1))
-            }
-            else if (this.state.sort === 'Oldest' ) {
-                return parseInt(b.registered.age.subString(0,1)) - parseInt(a.registered.age.subString(0,1))
-            }
-        })
-
         return (
             <Container className="justify-content-center">
-                <Filtergroup handleSort={this.handleSort}/>
-                <EmployeeList employee={sortedEmployees}/>
+                <Searchbar handleSort={this.handleSort} searchFilter={this.searchFilter}/>
+                <EmployeeList employee={this.state.filteredEmployee}/>
             </Container>
         )
     }
 }
-
-export default Employees; 
